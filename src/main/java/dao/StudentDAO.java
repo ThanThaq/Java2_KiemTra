@@ -90,14 +90,14 @@ public class StudentDAO {
         }
         return s;
     }
-    public static void update(Student student, String id) {
+    public static void update(Student s, String id) {
         Student tmp = getById(id);
         if (tmp == null) {
             throw new RuntimeException("Không tồn tại sinh viên này!");
         }
 
-        final String sql = String.format("UPDATE `student` SET `full_name`='%s',`gender`='%d',`birthday`='%s',`address`='%s',`phone`='%s',`email`='%s',`GPA`='%d' WHERE `id` = '%s'",
-                student.getFull_name(), student.getGender(), student.getBirthday(), student.getAddress(), student.getPhone(), student.getEmail(),student.getGPA(), student.getId()
+        final String sql = String.format("UPDATE `student` SET `full_name`='%s',`gender`='%d',`birthday`='%s',`address`='%s',`phone`='%s',`email`='%s',`GPA`='%f' WHERE `id` = '%s'",
+                s.getFull_name(), s.getGender(), s.getBirthday(), s.getAddress(), s.getPhone(), s.getEmail(),s.getGPA(), id
         );
         System.out.println(sql);
         try {
@@ -114,6 +114,7 @@ public class StudentDAO {
             e.printStackTrace();
         }
     }
+
     public static void delete(String id) {
         Student s = getById(id);
         if (s == null) {
